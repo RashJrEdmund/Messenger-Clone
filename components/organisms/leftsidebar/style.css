@@ -1,0 +1,42 @@
+.leftSideBar {
+    padding-top: 20px;
+    padding-left: 5px;
+    width: 240px;
+    background: white;
+    height: 100vh;
+    padding-right: 10px;
+    border-left: 1px solid rgb(160, 160, 160);
+}
+
+
+.menuItem {
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10px;
+    gap: 10px;
+    height: 40px;
+}
+
+.menuItem-Text {
+    display: flex;
+    width: 100%;
+}
+
+.menuItem-Counter {
+    border-radius: 50%;
+    background: rgb(9, 129, 220);
+    color: white;
+    padding: 0px 7px;
+    margin-right: 5px;
+}
+
+.menuItem-Title {
+    flex-basis: 90%;
+}
+
+.menuItem-Icon {
+    font-size: 18px;
+    color: rgb(116, 116, 116);
+}
