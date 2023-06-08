@@ -2,6 +2,8 @@
    width: 350px;
    background: white;
    padding: 15px 5px;
+   border-right: 1px solid rgb(234, 234, 234);
+   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .sectionheader {
@@ -94,6 +96,7 @@
     margin-top: 15px;
     overflow-y: scroll;
     height: 80vh;
+    border-bottom: 1px solid rgb(234, 234, 234);
 }
 
 .chatlist::-webkit-scrollbar {
