@@ -1,11 +1,14 @@
-import MenuItem from './MenuItem'
-import './style.css'
+import MenuItem from './MenuItem';
+import './style.css';
+import defaultPicture from '../../../assets/communitypic.png'
+import Image from 'next/image';
+import Icon from '@/components/atoms/Icon';
 
 function LeftSideBar() {
     return (
         <div className="leftSideBar">
             <div className="navLists">
-                <MenuItem name="Chats" counter={10} route="">
+                <MenuItem name="Chats" counter={10} route="" active>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                         <path fillRule="evenodd" d="M5.337 21.718a6.707 6.707 0 01-.533-.074.75.75 0 01-.44-1.223 3.73 3.73 0 00.814-1.686c.023-.115-.022-.317-.254-.543C3.274 16.587 2.25 14.41 2.25 12c0-5.03 4.428-9 9.75-9s9.75 3.97 9.75 9c0 5.03-4.428 9-9.75 9-.833 0-1.643-.097-2.417-.279a6.721 6.721 0 01-4.246.997z" clipRule="evenodd" />
                     </svg>
@@ -38,14 +41,23 @@ function LeftSideBar() {
                 </MenuItem>
             </div>
             <div className="communities">
-                <div title='communitiesHeader'>
+                <div className='communitiesHeader'>
                     Communities
                 </div>
-                <MenuItem name="Betting - Risky Odds"  route="">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                        <path fillRule="evenodd" d="M5.337 21.718a6.707 6.707 0 01-.533-.074.75.75 0 01-.44-1.223 3.73 3.73 0 00.814-1.686c.023-.115-.022-.317-.254-.543C3.274 16.587 2.25 14.41 2.25 12c0-5.03 4.428-9 9.75-9s9.75 3.97 9.75 9c0 5.03-4.428 9-9.75 9-.833 0-1.643-.097-2.417-.279a6.721 6.721 0 01-4.246.997z" clipRule="evenodd" />
-                    </svg>
+                <MenuItem name="Betting - Risky Odds" route="">
+                    <Image src={defaultPicture} alt="def" />
                 </MenuItem>
+            </div>
+            <div className="sessiondiv">
+            <MenuItem name='Chia Clint'>
+            <Image src={defaultPicture} alt="def" />
+                </MenuItem>
+                <Icon>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                        <path fillRule="evenodd" d="M2.25 4.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875V17.25a4.5 4.5 0 11-9 0V4.125zm4.5 14.25a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z" clipRule="evenodd" />
+                        <path d="M10.719 21.75h9.156c1.036 0 1.875-.84 1.875-1.875v-5.25c0-1.036-.84-1.875-1.875-1.875h-.14l-8.742 8.743c-.09.089-.18.175-.274.257zM12.738 17.625l6.474-6.474a1.875 1.875 0 000-2.651L15.5 4.787a1.875 1.875 0 00-2.651 0l-.1.099V17.25c0 .126-.003.251-.01.375z" />
+                    </svg>
+                </Icon>
             </div>
         </div>
     )
