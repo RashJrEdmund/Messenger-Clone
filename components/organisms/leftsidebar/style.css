@@ -1,11 +1,11 @@
 .leftSideBar {
     padding-top: 20px;
     padding-left: 5px;
-    width: 240px;
+    width: 270px;
     background: white;
     height: 100vh;
     padding-right: 10px;
-    border-left: 1px solid rgb(160, 160, 160);
+    border-right: 1px solid rgb(240, 240, 240);
 }
 
 .navLists {
@@ -38,7 +38,7 @@
 
 .menuItem-Counter {
     border-radius: 18px;
-    background: rgb(19, 138, 230);
+    background: rgb(29, 150, 243);
     color: white;
     padding: 0px 7px;
     margin-right: 5px;
@@ -67,7 +67,7 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    width: 230px;
+    width: 260px;
 }
 
 .sessiondiv img {
@@ -82,7 +82,7 @@
 }
 
 .sessiondiv  .menuItem:nth-child(1) {
-    width: 75%;
+    width: 80%;
 }
 
 
