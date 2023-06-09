@@ -4,7 +4,6 @@ import LandingFooter from "@/components/LandingComponents/LandingFooter/LandingF
 import LandingNavbar from "@/components/LandingComponents/LandingNav/LandingNavbar";
 import LandingMainSection from "@/components/LandingComponents/MainSection/LandingMainSection";
 import styled from "@emotion/styled";
-import Image from "next/image";
 
 const StyledLandingPage = styled.div`
   background-color: #fff;
@@ -14,12 +13,13 @@ const StyledLandingPage = styled.div`
   flex-direction: column;
   height: fit-content;
   min-height: 100vh;
+  width: 100%;
 `;
 
 export default function Home() {
   return (
     <StyledLandingPage>
-      <LandingNavbar /> 
+      <LandingNavbar />
       <LandingMainSection />
       <LandingFooter />
     </StyledLandingPage>

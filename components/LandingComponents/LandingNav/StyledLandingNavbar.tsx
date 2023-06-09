@@ -8,14 +8,13 @@ const StyledLandingNav = styled.div`
   width: 100%;
   height: fit-content;
 
-  .container {
+  .nav_container {
     width: min(98vw, 1224px);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
     height: fit-content;
-    padding: 20px 0;
+    padding: 20px 5px;
     color: #000;
 
     .col_2 {
@@ -55,6 +54,24 @@ const StyledLandingNav = styled.div`
         &:hover {
           &::after {
             background-color: #0183ff;
+          }
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .nav_container {
+      gap: 10px;
+
+      .col_2 {
+        li {
+          font-size: 12px;
+
+          &:hover {
+            &::after {
+              background-color: transparent;
+            }
           }
         }
       }

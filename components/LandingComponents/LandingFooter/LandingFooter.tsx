@@ -25,9 +25,9 @@ function LanguageSelect() {
 export default function LandingFooter({}: Props) {
   return (
     <StyledLandingFooter>
-      <div className="container">
+      <div className="footer_container">
         <ul className="col_1">
-          <li>© Meta {new Date().getFullYear()}</li>
+          <li className="copyright">© Meta {new Date().getFullYear()}</li>
           <li>
             The Apple and Google Play logos are trademaarks of their respective
             owners.

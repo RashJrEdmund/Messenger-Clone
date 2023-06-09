@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 export default function Chat({}: Props) {
-  return (
-    <div>Chat page</div>
-  )
+  return <div>Chat page</div>;
 }

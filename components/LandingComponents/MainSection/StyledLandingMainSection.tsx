@@ -2,14 +2,63 @@ import styled from "@emotion/styled";
 
 export const StyledLandingMainSection = styled.div`
   display: flex;
-  width: min(98vw, 1224px);
+  align-items: center;
+  justify-content: space-between;
+  width: min(96vw, 1224px);
   height: fit-content;
   min-height: 500px;
+  gap: 50px;
+  margin: 2rem 0 0;
 
-  .col_1 {
+  .main_col__1 {
+    width: min(100%, 440px);
+
     h1 {
+      background-image: linear-gradient(15deg, #4d67ff, #fe5b87);
+      background-clip: text;
+      color: transparent;
       font-weight: 1000;
-      font-size: max(8vw, 30px);
+      font-size: max(6vw, 20px);
+    }
+
+    p {
+      color: #616161;
+    }
+  }
+
+  .main_col__2 {
+    width: min(100%, 440px);
+    height: 500px;
+    display: flex;
+
+    .main_img {
+      height: 500px;
+      width: 600px;
+      width: 100%;
+      align-self: flex-end;
+    }
+  }
+
+  @media only screen and (max-width: 1040px) {
+    flex-direction: column;
+    width: min(96vw, 500px);
+    min-height: 500px;
+    gap: 90px;
+
+    .main_col__1 {
+      width: min(100%, 440px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      h1 {
+        font-size: max(8vw, 30px);
+      }
+
+      p {
+        font-size: 14px;
+      }
     }
   }
 `;
@@ -21,7 +70,6 @@ export const StyledLoginForm = styled.form`
   align-items: flex-start;
   padding: 15px 0;
   margin: 1.4rem 0;
-  border: 1px solid #0183ff;
 
   [type="text"],
   [type="password"] {
@@ -57,6 +105,7 @@ export const StyledLoginForm = styled.form`
       text-decoration: underline;
       font-weight: 500;
       color: #0183ff;
+      cursor: pointer;
     }
   }
 

@@ -2,14 +2,14 @@ import React from "react";
 import { StyledLandingMainSection } from "./StyledLandingMainSection";
 import LoginForm from "./LoginForm";
 import Image from "next/image";
-import Ilustration from "../images/Facebook_Messenger.png";
+import Ilustration from "../images/landing_image.webp";
 
 type Props = {};
 
 export default function LandingMainSection({}: Props) {
   return (
     <StyledLandingMainSection>
-      <div className="col_1">
+      <div className="main_col__1">
         <h1>Hang out anytime, anywhere</h1>
 
         <p>
@@ -19,12 +19,13 @@ export default function LandingMainSection({}: Props) {
         <LoginForm />
       </div>
 
-      <div className="col_2">
+      <div className="main_col__2">
         <Image
+          className="main_img"
           src={Ilustration}
           alt="landing ilustration"
-          height="300"
-          width="100"
+          height="500"
+          width="700"
         />
       </div>
     </StyledLandingMainSection>

@@ -1,24 +1,66 @@
 import React, { ReactNode } from "react";
 import { StyledLoginForm } from "./StyledLandingMainSection";
+import {
+  signInWithPhoneNumber,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../../../config/firebase";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 export default function LoginForm({}: Props) {
   type formType = {
-    email: string;
+    emailPhone: string;
     password: string;
   };
 
   const [formData, setFormData] = React.useState<formType>({
-    email: "",
+    emailPhone: "",
     password: "",
   });
 
-  const handleSubmit: (e: any) => void = (e) => {
+  const [loader, setLoader] = React.useState<{
+    loading: boolean;
+    message: string;
+  }>({ loading: false, message: "" });
+
+  const router = useRouter();
+
+  const loginWithEmailPassword = async () => {
+    const { emailPhone, password } = formData;
+
+    await signInWithEmailAndPassword(auth, emailPhone, password)
+      .then(({ user }) => {
+        console.log("email password signup user", user);
+        router.push("/chat");
+      })
+      .catch((e) => console.log("this error", e))
+      .finally(() => {
+        setLoader({ loading: false, message: "could_not_login" });
+      });
+  };
+
+  const loginWithPhonePassword = async () => {
+    const { emailPhone, password } = formData;
+    console.log("this phone");
+
+    // await signInWithPhoneNumber(auth, emailPhone, password).finally(() => {
+    //   if (setLoader) setLoader({ loading: false, message: "could_not_login" });
+    // });
+  };
+
+  const handleSubmit: (e: any) => void = async (e) => {
     e.preventDefault();
-    if (!formData.email.trim() || !formData.password.trim()) {
+    if (!formData.emailPhone.trim() || !formData.password.trim()) {
       return;
     }
+
+    const emailReg = /\w{2}[@]\w{3,5}[.]/;
+    const phoneReg = /\d{2}/;
+
+    if (emailReg.test(formData.emailPhone)) await loginWithEmailPassword();
+    else if (phoneReg.test(formData.emailPhone)) await loginWithPhonePassword();
   };
 
   return (
@@ -27,7 +69,7 @@ export default function LoginForm({}: Props) {
         type="text"
         placeholder="Email or phone number"
         onChange={({ target: { value } }) =>
-          setFormData((prev: formType) => ({ ...prev, email: value }))
+          setFormData((prev: formType) => ({ ...prev, emailPhone: value }))
         }
       />
 

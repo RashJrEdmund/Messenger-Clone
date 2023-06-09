@@ -9,7 +9,7 @@ type Props = {};
 export default function LandingNavbar({}: Props) {
   return (
     <StyledLandingNav>
-      <div className="container">
+      <div className="nav_container">
         <Image
           className="logo"
           src={Logo}
