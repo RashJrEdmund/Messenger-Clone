@@ -8,6 +8,17 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+.react-icons {
+  vertical-align: middle;
+}
+
+@layer components{
+  .hoverEffect{
+      @apply cursor-pointer hover:bg-gray-200 rounded  transition duration-500 ease-out
+  }
+}
+
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -24,4 +35,8 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+.fontSize-22 svg {
+  width: 30px;
 }

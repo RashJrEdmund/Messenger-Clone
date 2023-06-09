@@ -1,0 +1,95 @@
+.leftSideBar {
+    padding-top: 20px;
+    padding-left: 5px;
+    width: 270px;
+    background: white;
+    height: 100vh;
+    padding-right: 10px;
+    border-right: 1px solid rgb(234, 234, 234);
+}
+
+.navLists {
+    padding-bottom: 20px;
+}
+
+.menuItem-Icon {
+    width: 40px;
+}
+
+.menuItem-Icon img {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+}
+
+.menuItem {
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10px;
+    height: 40px;
+}
+
+.menuItem-Text {
+    display: flex;
+    width: 100%;
+}
+
+.menuItem-Counter {
+    border-radius: 18px;
+    background: rgb(29, 150, 243);
+    color: white;
+    padding: 0px 7px;
+    margin-right: 5px;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuItem-Title {
+    flex-basis: 90%;
+}
+
+.menuItem-Icon {
+    font-size: 18px;
+}
+
+.communitiesHeader {
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+
+.sessiondiv {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 260px;
+}
+
+.sessiondiv img {
+    border-radius: 50%;
+    width: 40px;
+    height: 35px;
+}
+
+.sessiondiv svg {
+    color: black;
+    border-radius: 50PX;
+}
+
+.sessiondiv  .menuItem:nth-child(1) {
+    width: 80%;
+}
+
+
+.sessiondiv  .menuItem-Title:nth-child(1) {
+    padding-left: 10PX;
+}
+
+.sessiondiv {
+    padding-left: 10PX;
+}
