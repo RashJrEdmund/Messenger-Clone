@@ -18,11 +18,19 @@ export const StyledLandingMainSection = styled.div`
       background-clip: text;
       color: transparent;
       font-weight: 1000;
-      font-size: max(6vw, 20px);
+      font-size: min(6vw, 90px);
     }
 
     p {
       color: #616161;
+
+      &.toggle_logtype {
+        font-size: 12px;
+        margin: 1rem 0 0;
+        cursor: pointer;
+        color: #5a59ff;
+        text-decoration: underline;
+      }
     }
   }
 
@@ -117,5 +125,17 @@ export const StyledLoginForm = styled.form`
     gap: 10px;
     width: fit-content;
     padding: 2px;
+  }
+
+  @media only screen and {
+    .action_btns {
+      a {
+        font-size: 12px;
+      }
+    }
+
+    label {
+      font-size: 12px;
+    }
   }
 `;

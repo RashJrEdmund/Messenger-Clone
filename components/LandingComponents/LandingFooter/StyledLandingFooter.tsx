@@ -25,9 +25,11 @@ const StyledLandingFooter = styled.div`
       align-items: center;
       gap: 10px;
       font-weight: 400;
+      font-size: 14px;
 
       li.copyright {
         font-weight: 500;
+        font-size: 16px;
       }
     }
   }
@@ -36,15 +38,6 @@ const StyledLandingFooter = styled.div`
     .footer_container {
       display: flex;
       flex-direction: column;
-
-      .col_1,
-      .col_2 {
-        font-size: 14px;
-
-        li.copyright {
-          font-size: 16px;
-        }
-      }
     }
   }
 `;

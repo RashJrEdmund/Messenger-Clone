@@ -17,6 +17,10 @@ const StyledLandingNav = styled.div`
     padding: 20px 5px;
     color: #000;
 
+    .logo {
+      cursor: pointer;
+    }
+
     .col_2 {
       list-style: none;
       display: flex;
@@ -28,15 +32,12 @@ const StyledLandingNav = styled.div`
       height: fit-content;
       padding: 0 10px;
 
-      .logo {
-        cursor: pointer;
-      }
-
       li {
         font-size: 14px;
         font-weight: 600;
         cursor: pointer;
         position: relative;
+        white-space: nowrap;
 
         &::after {
           content: " ";
@@ -62,9 +63,8 @@ const StyledLandingNav = styled.div`
 
   @media only screen and (max-width: 768px) {
     .nav_container {
-      gap: 10px;
-
       .col_2 {
+        gap: 10px;
         li {
           font-size: 12px;
 
@@ -73,6 +73,16 @@ const StyledLandingNav = styled.div`
               background-color: transparent;
             }
           }
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    .nav_container {
+      .col_2 {
+        li {
+          font-size: 10px;
         }
       }
     }

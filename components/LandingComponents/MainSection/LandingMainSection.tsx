@@ -3,10 +3,13 @@ import { StyledLandingMainSection } from "./StyledLandingMainSection";
 import LoginForm from "./LoginForm";
 import Image from "next/image";
 import Ilustration from "../images/landing_image.webp";
+import ContinueWithFb from "./ContinueWithFb";
 
 type Props = {};
 
 export default function LandingMainSection({}: Props) {
+  const [logType, setLogType] = React.useState<boolean | number>(false);
+
   return (
     <StyledLandingMainSection>
       <div className="main_col__1">
@@ -16,7 +19,14 @@ export default function LandingMainSection({}: Props) {
           Messenger makes it easy and fun to stay close to your favorite people
         </p>
 
-        <LoginForm />
+        {logType ? <LoginForm /> : <ContinueWithFb />}
+
+        <p
+          onClick={() => setLogType((prev) => !prev)}
+          className="toggle_logtype"
+        >
+          {logType ? "Login with Facebook" : "switch Account"}
+        </p>
       </div>
 
       <div className="main_col__2">
@@ -24,8 +34,6 @@ export default function LandingMainSection({}: Props) {
           className="main_img"
           src={Ilustration}
           alt="landing ilustration"
-          height="500"
-          width="700"
         />
       </div>
     </StyledLandingMainSection>
