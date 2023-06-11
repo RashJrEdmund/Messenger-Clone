@@ -127,15 +127,15 @@ export const StyledLoginForm = styled.form`
     padding: 2px;
   }
 
-  @media only screen and {
+  @media only screen and (max-width: 500px) {
     .action_btns {
       a {
-        font-size: 12px;
+        font-size: 14px;
       }
     }
 
     label {
-      font-size: 12px;
+      font-size: 14px;
     }
   }
 `;
@@ -151,7 +151,7 @@ export const StyledForgotPassword = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: min(97vw, 500px);
+  width: min(95vw, 500px);
 
   input {
     background-color: #e0e4e5e9;

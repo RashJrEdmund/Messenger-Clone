@@ -23,7 +23,7 @@ export default function ForgotPassword({ email, setResetPassword }: Props) {
   };
 
   React.useEffect(() => {
-    inputRef.current.focus();
+    if(inputRef.current) inputRef.current.focus();
   }, []);
 
   return (
