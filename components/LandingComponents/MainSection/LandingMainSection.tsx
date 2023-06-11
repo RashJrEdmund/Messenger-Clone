@@ -8,7 +8,7 @@ import ContinueWithFb from "./ContinueWithFb";
 type Props = {};
 
 export default function LandingMainSection({}: Props) {
-  const [logType, setLogType] = React.useState<boolean | number>(false);
+  const [loginWithForm, setLoginWithForm] = React.useState<boolean>(false);
 
   return (
     <StyledLandingMainSection>
@@ -19,13 +19,13 @@ export default function LandingMainSection({}: Props) {
           Messenger makes it easy and fun to stay close to your favorite people
         </p>
 
-        {logType ? <LoginForm /> : <ContinueWithFb />}
+        {loginWithForm ? <LoginForm /> : <ContinueWithFb />}
 
         <p
-          onClick={() => setLogType((prev) => !prev)}
-          className="toggle_logtype"
+          onClick={() => setLoginWithForm((prev) => !prev)}
+          className="toggle_loginWithForm"
         >
-          {logType ? "Login with Facebook" : "switch Account"}
+          {loginWithForm ? "Continue with Facebook" : "switch Account"}
         </p>
       </div>
 
