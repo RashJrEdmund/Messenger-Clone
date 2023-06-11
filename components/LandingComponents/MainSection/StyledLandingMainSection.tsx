@@ -139,3 +139,40 @@ export const StyledLoginForm = styled.form`
     }
   }
 `;
+
+export const StyledForgotPassword = styled.form`
+  background-color: #fff;
+  padding: 20px 27px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(97vw, 500px);
+
+  input {
+    background-color: #e0e4e5e9;
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0 0 20px;
+  }
+
+  button {
+    background-color: #0b7cfe;
+    color: #fff;
+    width: 100%;
+    padding: 10px 17px;
+    border-radius: 10px;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: #5a59ff;
+    }
+  }
+`;
