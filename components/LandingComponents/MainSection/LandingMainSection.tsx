@@ -4,6 +4,7 @@ import LoginForm from "./LoginForm";
 import Image from "next/image";
 import Ilustration from "../images/landing_image.webp";
 import ContinueWithFb from "./ContinueWithFb";
+import TradeMarks from "./TradeMarks";
 
 type Props = {};
 
@@ -27,6 +28,8 @@ export default function LandingMainSection({}: Props) {
         >
           {loginWithForm ? "Continue with Facebook" : "switch Account"}
         </p>
+
+        <TradeMarks />
       </div>
 
       <div className="main_col__2">

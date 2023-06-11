@@ -6,7 +6,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../../config/firebase";
 import { useRouter } from "next/navigation";
-import { type } from "os";
+import ForgotPassword from "./ForgotPassword";
 
 type Props = {};
 
@@ -40,6 +40,8 @@ export default function LoginForm({}: Props) {
     emailPhone: false,
     password: false,
   });
+
+  const [resetPassword, setResetPassword] = React.useState<boolean>(false);
 
   const router = useRouter();
 
@@ -112,11 +114,27 @@ export default function LoginForm({}: Props) {
     setFormError((prev) => ({ ...prev, emailPhone: false }));
   };
 
+  const toggleForgotPass = () => {
+    const emailReg = /\w{2}[@]\w{3,15}[.]/;
+    if (!emailReg.test(formData.emailPhone))
+      setFormData({ emailPhone: "", password: "" });
+
+    setResetPassword(true);
+  };
+
   return (
     <StyledLoginForm onSubmit={handleSubmit}>
+      {resetPassword && (
+        <ForgotPassword
+          email={formData.emailPhone}
+          setResetPassword={setResetPassword}
+        />
+      )}
+
       <input
         type="text"
         placeholder="Email or phone number"
+        value={formData.emailPhone}
         style={{ border: formError.emailPhone ? "1px solid red" : "none" }}
         onChange={handleEmailPhoneField}
       />
@@ -125,6 +143,7 @@ export default function LoginForm({}: Props) {
         type="password"
         placeholder="Password"
         minLength={6}
+        value={formData.password}
         style={{ border: formError.password ? "1px solid red" : "none" }}
         onChange={handlePasswordField}
       />
@@ -132,7 +151,7 @@ export default function LoginForm({}: Props) {
       <div className="action_btns">
         <button type="submit">Log in</button>
 
-        <a>Forgot your password ?</a>
+        <a onClick={toggleForgotPass}>Forgot your password ?</a>
       </div>
 
       <label htmlFor="keep_me_signed">
