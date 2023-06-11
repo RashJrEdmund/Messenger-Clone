@@ -23,7 +23,7 @@ export default function LandingMainSection({}: Props) {
 
         <p
           onClick={() => setLoginWithForm((prev) => !prev)}
-          className="toggle_loginWithForm"
+          className="toggle_logtype"
         >
           {loginWithForm ? "Continue with Facebook" : "switch Account"}
         </p>

@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useRef } from "react";
 import { StyledLoginForm } from "./StyledLandingMainSection";
 import {
   signInWithPhoneNumber,
@@ -6,6 +6,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../../config/firebase";
 import { useRouter } from "next/navigation";
+import { type } from "os";
 
 type Props = {};
 
@@ -15,15 +16,30 @@ export default function LoginForm({}: Props) {
     password: string;
   };
 
+  type loadType = {
+    loading: boolean;
+    message: string;
+  };
+
+  type formErrorType = {
+    emailPhone: boolean;
+    password: boolean;
+  };
+
   const [formData, setFormData] = React.useState<formType>({
     emailPhone: "",
     password: "",
   });
 
-  const [loader, setLoader] = React.useState<{
-    loading: boolean;
-    message: string;
-  }>({ loading: false, message: "" });
+  const [loader, setLoader] = React.useState<loadType>({
+    loading: false,
+    message: "",
+  });
+
+  const [formError, setFormError] = React.useState<formErrorType>({
+    emailPhone: false,
+    password: false,
+  });
 
   const router = useRouter();
 
@@ -50,17 +66,50 @@ export default function LoginForm({}: Props) {
     // });
   };
 
+  const validateForm: () => boolean = () => {
+    if (
+      !formData.emailPhone.trim() ||
+      !formData.password.trim() ||
+      formData.password.length < 6
+    ) {
+      if (!formData.emailPhone.trim() && !formData.password.trim()) {
+        setFormError({ emailPhone: true, password: true });
+      } else if (formData.password.length < 6 || !formData.password.trim()) {
+        setFormError((prev) => ({ ...prev, password: true }));
+      }
+
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit: (e: any) => void = async (e) => {
     e.preventDefault();
-    if (!formData.emailPhone.trim() || !formData.password.trim()) {
+    if (!validateForm()) return;
+
+    if (formData.password.length < 6 || !formData.password.trim()) {
+      setFormError((prev) => ({ ...prev, password: true }));
       return;
     }
 
-    const emailReg = /\w{2}[@]\w{3,5}[.]/;
+    const emailReg = /\w{2}[@]\w{3,15}[.]/;
     const phoneReg = /\d{2}/;
 
     if (emailReg.test(formData.emailPhone)) await loginWithEmailPassword();
     else if (phoneReg.test(formData.emailPhone)) await loginWithPhonePassword();
+  };
+
+  // handling form inuts
+
+  const handlePasswordField = ({ target: { value } }: any) => {
+    setFormData((prev: formType) => ({ ...prev, password: value }));
+    setFormError((prev) => ({ ...prev, password: false }));
+  };
+
+  const handleEmailPhoneField = ({ target: { value } }: any) => {
+    setFormData((prev: formType) => ({ ...prev, emailPhone: value }));
+    setFormError((prev) => ({ ...prev, emailPhone: false }));
   };
 
   return (
@@ -68,17 +117,16 @@ export default function LoginForm({}: Props) {
       <input
         type="text"
         placeholder="Email or phone number"
-        onChange={({ target: { value } }) =>
-          setFormData((prev: formType) => ({ ...prev, emailPhone: value }))
-        }
+        style={{ border: formError.emailPhone ? "1px solid red" : "none" }}
+        onChange={handleEmailPhoneField}
       />
 
       <input
         type="password"
         placeholder="Password"
-        onChange={({ target: { value } }) =>
-          setFormData((prev: formType) => ({ ...prev, password: value }))
-        }
+        minLength={6}
+        style={{ border: formError.password ? "1px solid red" : "none" }}
+        onChange={handlePasswordField}
       />
 
       <div className="action_btns">
