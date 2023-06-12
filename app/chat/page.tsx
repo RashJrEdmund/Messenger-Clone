@@ -1,4 +1,5 @@
-<<<<<<< HEAD
+import React from "react";
+        
 import ChatArea from "@/components/organisms/chatarea/ChatArea";
 import ChatsSection from "@/components/organisms/chatssection/ChatsSection";
 import LeftSideBar from "@/components/organisms/leftsidebar/LeftSideBar";
@@ -11,14 +12,3 @@ export default function Home() {
     <ChatArea />
   </div>;
 }
-=======
-import React from 'react'
-
-type Props = {}
-
-export default function Chat({}: Props) {
-  return (
-    <div>Chat page</div>
-  )
-}
->>>>>>> 188eb372cf2b8e2425e6dbc263b110b170869e47

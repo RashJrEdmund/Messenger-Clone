@@ -1,14 +1,27 @@
-import ChatArea from "@/components/organisms/chatarea/ChatArea";
-import ChatsSection from "@/components/organisms/chatssection/ChatsSection";
-import LeftSideBar from "@/components/organisms/leftsidebar/LeftSideBar";
-import Image from "next/image";
+"use client";
+
+import LandingFooter from "@/components/LandingComponents/LandingFooter/LandingFooter";
+import LandingNavbar from "@/components/LandingComponents/LandingNav/LandingNavbar";
+import LandingMainSection from "@/components/LandingComponents/MainSection/LandingMainSection";
+import styled from "@emotion/styled";
+
+const StyledLandingPage = styled.div`
+  background-color: #fff;
+  color: #000;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: fit-content;
+  min-height: 100vh;
+  width: 100%;
+`;
 
 export default function Home() {
-<<<<<<< HEAD
-  return <div className="flex">
-   
-  </div>;
-=======
-  return <div>Landing page</div>;
->>>>>>> 188eb372cf2b8e2425e6dbc263b110b170869e47
-}
+  return (
+    <StyledLandingPage>
+      <LandingNavbar />
+      <LandingMainSection />
+      <LandingFooter />
+    </StyledLandingPage>
+  );
+    
