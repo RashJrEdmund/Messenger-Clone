@@ -1,0 +1,103 @@
+.chatsSetion {
+   width: 350px;
+   background: white;
+   padding: 15px 5px;
+   border-right: 1px solid rgb(234, 234, 234);
+}
+
+.sectionheader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    margin: 0 10px;
+}
+
+.sectionheader .text {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.sectionheader .icons {
+    display: flex;
+    gap: 10px;
+}
+
+.searchMessenger {
+    margin: 0 10px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    display: flex;
+    gap: 5px;
+    color: grey;
+    background: rgb(243, 243, 243);
+}
+
+.searchMessenger svg {
+    width: 20px;
+}
+
+.searchMessenger input::placeholder {
+    color: grey;
+}
+
+.searchMessenger input {
+    outline: none;
+    background: transparent;
+    color: rgb(2, 2, 2);
+}
+
+.chatListItem {
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    height: auto;
+}
+
+.chatListItem .circle {
+   
+}
+
+.chatListItem .ending .dot{
+   background: rgb(29, 150, 243);
+   height: 15px;
+   width: 15px;
+   border-radius: 50%;
+}
+
+.chatListItem .ending .dot img {
+    border-radius: 50%;
+}
+
+.chatListItem .ending {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chatListItem .middle {
+    flex-basis: 78%;
+    padding-left: 10px;
+}
+
+.chatListItem .circle img {
+    width: 50px;
+    border-radius: 50%;
+    background-color: skyblue;
+}
+
+.peepMessage {
+    font-size: 13px;
+}
+
+.chatlist {
+    margin-top: 15px;
+    overflow-y: scroll;
+    height: 81.5vh;
+    border-bottom: 1px solid rgb(234, 234, 234);
+}
+
+.chatlist::-webkit-scrollbar {
+    display: none;
+}
