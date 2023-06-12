@@ -1,7 +1,12 @@
+"use client";
+
+import AuthGaurd from "@/HOC/AuthGaurd";
 import React from "react";
 
 type Props = {};
 
-export default function Chat({}: Props) {
+function Chat({}: Props) {
   return <div>Chat page</div>;
 }
+
+export default AuthGaurd(Chat);

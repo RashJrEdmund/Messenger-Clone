@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
@@ -16,10 +16,13 @@ const AuthGaurd = (Component: any) => {
         if (user) {
           const currUser = {
             uid: user.uid,
-            email: user.email,
-            displayname: user.displayName,
-            phoneNumber: user.phoneNumber,
-            photoURL: user.photoURL,
+            email: user.email || "useremail@domain.com",
+            username: "username",
+            displayname: user.displayName || "userDisplayname",
+            phoneNumber: user.phoneNumber || "111111",
+            photoURL:
+              user.photoURL ||
+              "https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=1024x1024&w=is&k=20&c=6XEZlH2FjqdpXUqjUK4y0LlWF6yViZVWn9HZJ-IR8gU=",
             emailVerified: user.emailVerified /* boolean */,
             // ...user,
           };
@@ -32,7 +35,6 @@ const AuthGaurd = (Component: any) => {
           setUserInfo(currUser);
         } else setUserInfo(null);
       });
-
       return () => unsubscribe;
     }, []);
 
