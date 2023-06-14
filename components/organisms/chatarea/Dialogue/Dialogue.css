@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+}
+
+.messageBubble {
+    margin: 1rem 1rem;
+    padding: 1rem;
+    border:1px solid #E4E6EB;
+    border-radius: 0 1rem 0 2rem;
+    padding-bottom: 26px;
+    text-align: center;
+    background-color:#E4E6EB;
+    margin-bottom:10px;
+    position: relative; 
+    color:#0C3374;
+}
