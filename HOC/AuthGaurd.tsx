@@ -31,6 +31,8 @@ const AuthGaurd = (Component: any) => {
           //   );
           setUserInfo(currUser);
         } else setUserInfo(null);
+
+        console.log(userInfo)
       });
 
       return () => unsubscribe;

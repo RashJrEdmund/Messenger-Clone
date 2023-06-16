@@ -1,16 +1,27 @@
-.container{
-    display: flex;
+.container {
+  display: flex;
 }
 
 .messageBubble {
-    margin: 1rem 1rem;
-    padding: 1rem;
-    border:1px solid #E4E6EB;
-    border-radius: 0 1rem 0 2rem;
-    padding-bottom: 26px;
-    text-align: center;
-    background-color:#E4E6EB;
-    margin-bottom:10px;
-    position: relative; 
-    color:#0C3374;
+  margin: 1rem 1rem;
+  padding: 1rem;
+  border: 1px solid #e4e6eb;
+
+  padding-bottom: 26px;
+  text-align: center;
+  background-color: #e4e6eb;
+  margin-bottom: 10px;
+  position: relative;
+  color: #0c3374;
+}
+
+.myMessage {
+  margin-left: auto;
+  background-color: #e4e6eb;
+  border-radius: 0 1rem 0 2rem;
+}
+
+.fromMessage {
+    background-color: blue;
+    text-align: left;
 }

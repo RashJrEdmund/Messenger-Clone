@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { signInWithPopup } from "firebase/auth";
-import { auth, facebookProvider } from "@/config/firebase";
+import { auth, db, facebookProvider } from "@/config/firebase";
 import { useRouter } from "next/navigation";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 
 const StyledBtn = styled.button`
   background-color: #0b7cff;
@@ -25,9 +26,19 @@ export default function ContinueWithFb({}: Props) {
 
   const signInWithFacebook = () => {
     signInWithPopup(auth, facebookProvider)
-      .then((res) => {
+      .then(async ({ user }) => {
+        const currUser = {
+          uid: user.uid,
+          email: user.email,
+          displayname: user.displayName,
+          timeStamp: serverTimestamp(),
+          photoURL: user.photoURL,
+          emailVerified: user.emailVerified /* boolean */,
+          // ...user,
+        };
+        await setDoc(doc(db, "users", user.uid), currUser);
         router.push("/chat");
-        console.log("this res", res);
+        console.log("this res", { user });
       })
       .catch((er) => console.warn(er));
   };
