@@ -1,73 +1,73 @@
 .chatsSetion {
-   width: 350px;
-   background: white;
-   padding: 15px 5px;
-   border-right: 1px solid rgb(234, 234, 234);
+  width: 350px;
+  background: white;
+  color: #1a3374;
+  padding: 15px 5px;
+  border-right: 1px solid rgb(234, 234, 234);
 }
 
 .sectionheader {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    margin: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  margin: 0 10px;
 }
 
 .sectionheader .text {
-    font-size: 25px;
-    font-weight: bold;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .sectionheader .icons {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .searchMessenger {
-    margin: 0 10px;
-    padding: 5px 10px;
-    border-radius: 20px;
-    display: flex;
-    gap: 5px;
-    color: grey;
-    background: rgb(243, 243, 243);
+  margin: 0 10px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  display: flex;
+  gap: 5px;
+  color: grey;
+  background: rgb(243, 243, 243);
 }
 
 .searchMessenger svg {
-    width: 20px;
+  width: 20px;
 }
 
 .searchMessenger input::placeholder {
-    color: grey;
+  color: grey;
 }
 
 .searchMessenger input {
-    outline: none;
-    background: transparent;
-    color: rgb(2, 2, 2);
+  outline: none;
+  background: transparent;
+  color: rgb(2, 2, 2);
 }
 
 .chatListItem {
-    display: flex;
-    padding: 5px;
-    align-items: center;
-    height: auto;
+  display: flex;
+  padding: 5px;
+  align-items: center;
+  height: auto;
 }
 
 .chatListItem .circle {
-   
 }
 
-.chatListItem .ending .dot{
-   background: rgb(29, 150, 243);
-   height: 15px;
-   width: 15px;
-   border-radius: 50%;
+.chatListItem .ending .dot {
+  background: rgb(29, 150, 243);
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
 }
 
 .chatListItem .ending .dot img {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 .chatListItem .ending {
@@ -77,27 +77,27 @@
 }
 
 .chatListItem .middle {
-    flex-basis: 78%;
-    padding-left: 10px;
+  flex-basis: 78%;
+  padding-left: 10px;
 }
 
 .chatListItem .circle img {
-    width: 50px;
-    border-radius: 50%;
-    background-color: skyblue;
+  width: 50px;
+  border-radius: 50%;
+  background-color: skyblue;
 }
 
 .peepMessage {
-    font-size: 13px;
+  font-size: 13px;
 }
 
 .chatlist {
-    margin-top: 15px;
-    overflow-y: scroll;
-    height: 81.5vh;
-    border-bottom: 1px solid rgb(234, 234, 234);
+  margin-top: 15px;
+  overflow-y: scroll;
+  height: 81.5vh;
+  border-bottom: 1px solid rgb(234, 234, 234);
 }
 
 .chatlist::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
