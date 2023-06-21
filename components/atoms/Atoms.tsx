@@ -32,7 +32,8 @@ export const SignButton = styled.button<StyledProps>`
   gap: 10px;
 
   &:hover {
-    background-color: #5a59ff;
+    background-color: ${({ bg }) => (bg ? "#0b7cff" : "#5a59ff")};
+    color: #fff;
   }
   @media only screen and (max-width: 650px) {
     width: 100%;
