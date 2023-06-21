@@ -27,7 +27,7 @@ export default function GoogleSign({}: Props) {
   return (
     <SignButton bg="#f5f5f5" color="#000" onClick={googleSignup}>
       <StyledGoogle />
-      GoogleSign
+      Continue with Google
     </SignButton>
   );
 }
