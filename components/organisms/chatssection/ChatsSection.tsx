@@ -1,16 +1,41 @@
 "use client";
 import Icon from "@/components/atoms/Icon";
 import path from "path";
-import ChatListItem from "./ChatListItem";
+import ChatListItem from "./ChatListItem"
 import "./ChatsSection.css";
 import { useEffect, useState } from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  onSnapshot,
+  QuerySnapshot,
+} from "firebase/firestore";
 import { db } from "@/config/firebase";
 import AuthGaurd from "@/HOC/AuthGaurd";
 
 function ChatsSection({ userInfo }: any) {
   const [friends, setFriends] = useState<any>([]);
+  const [chats, setChats] = useState<any>([]);
 
+  // query chat
+  useEffect(() => {
+    const chatsRef = collection(db, "chats");
+    const q = query(chatsRef, where("users", "array-contains", userInfo.uid));
+
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      setChats(
+        querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      );
+    });
+   
+    return unsubscribe;
+  }, [userInfo.uid]);
+
+  console.log("1", chats)
+
+  // query friends
   useEffect(() => {
     async function fetchFriends() {
       const usersRef = collection(db, "users");
@@ -20,6 +45,7 @@ function ChatsSection({ userInfo }: any) {
         querySnaphot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }))
       );
     }
+
     fetchFriends();
   }, [userInfo?.email]);
 
@@ -69,8 +95,12 @@ function ChatsSection({ userInfo }: any) {
         </div>
       </div>
       <div className="chatlist">
-        {friends.map((friend: any) => (
-          <ChatListItem key={friend.uid} friend={friend} />
+        {/* {friends.map((friend: any) => (
+          <ChatListItem key={friend.uid} friend={friend} userInfo={userInfo} />
+        ))} */}
+
+        {chats.map((chat: any) => (
+          <ChatListItem key={chat.id} userInfo={userInfo} users={chat.users} />
         ))}
       </div>
     </div>

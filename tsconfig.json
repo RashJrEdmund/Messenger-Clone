@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/organisms/chatssection/ChatListItem.jsx", "components/organisms/chatssection/ChatListItem.jsx", "utils/getFriens.js"],
   "exclude": ["node_modules"]
 }
