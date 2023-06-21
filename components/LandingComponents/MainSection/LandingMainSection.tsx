@@ -5,6 +5,7 @@ import ContinueWithFb from "./ContinueWithFb";
 import TradeMarks from "./TradeMarks";
 import Landing_img from "../images/langing_photo.png";
 import Image from "next/image";
+import GoogleSign from "./GoogleSign";
 
 type Props = {};
 
@@ -19,6 +20,8 @@ export default function LandingMainSection({}: Props) {
         <p>
           Messenger makes it easy and fun to stay close to your favorite people
         </p>
+
+        <GoogleSign />
 
         {loginWithForm ? <LoginForm /> : <ContinueWithFb />}
 
