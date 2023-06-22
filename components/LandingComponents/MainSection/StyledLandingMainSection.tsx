@@ -41,7 +41,6 @@ export const StyledLandingMainSection = styled.div`
 
     .main_img {
       height: 500px;
-      width: 600px;
       width: 100%;
       align-self: flex-end;
     }

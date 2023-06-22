@@ -1,46 +1,30 @@
 import Image from "next/image";
 import "./ChatsSection.css";
 import Moment from "react-moment";
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "@/config/firebase";
+
 import { useEffect, useState } from "react";
 import getFriends from "@/utils/getFriends";
+import { useRouter } from "next/navigation";
 
-type Props = { users: any, userInfo: any };
+type Props = { id: any; users: any; userInfo: any };
 
-function ChatListItem({ users, userInfo }: Props) {
+function ChatListItem({ id, users, userInfo }: Props) {
   const [friends, setFriend] = useState<any>({});
-
-  const creatChat = async (id: any) => {
-    const chatRef = collection(db, "chats");
-    const q = query(chatRef, where("users", "array-contains", userInfo.uid));
-    const querySnapshot = await getDocs(q);
-    const chatAlreadyExist = (friend_id: any) =>
-      !!querySnapshot?.docs.find(
-        (chat) =>
-          chat.data().users.find((user: any) => user === friend_id)?.length > 0
-      );
-    console.log("created");
-    if (!chatAlreadyExist(id)) {
-      addDoc(chatRef, { users: [userInfo.uid, id] });
-    }
+  const router = useRouter();
+  const enterChat = () => {
+    router.push(`/chat/${id}`);
+    console.log(id)
   };
 
   useEffect(() => {
     if (users.length > 0) {
-      getFriends({ users, userInfo  }).then(( data : any) => 
-        setFriend(data)
-      );
-      
+      getFriends({ users, userInfo }).then((data: any) => setFriend(data));
     }
   }, [userInfo, users]);
-  console.log(friends)
+  console.log(friends);
 
   return (
-    <div
-      className="chatListItem hoverEffect"
-      onClick={() => creatChat(userInfo.uid)}
-    >
+    <div className="chatListItem hoverEffect" onClick={enterChat}>
       <div className="circle">
         <img src={friends?.photoURL} alt="" width={40} height={40} />
       </div>

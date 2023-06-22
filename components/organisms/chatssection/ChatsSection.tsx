@@ -1,9 +1,9 @@
 "use client";
 import Icon from "@/components/atoms/Icon";
 import path from "path";
-import ChatListItem from "./ChatListItem"
+import ChatListItem from "./ChatListItem";
 import "./ChatsSection.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   collection,
   query,
@@ -14,11 +14,13 @@ import {
 } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import AuthGaurd from "@/HOC/AuthGaurd";
+import FriendsIn from "./Friend";
 
 function ChatsSection({ userInfo }: any) {
   const [friends, setFriends] = useState<any>([]);
   const [chats, setChats] = useState<any>([]);
-
+  const inputSearch = useRef<any>(null);
+  const [searchFriends, setSearchFriends] = useState<any>(false);
   // query chat
   useEffect(() => {
     const chatsRef = collection(db, "chats");
@@ -29,11 +31,11 @@ function ChatsSection({ userInfo }: any) {
         querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       );
     });
-   
-    return unsubscribe;
-  }, [userInfo.uid]);
 
-  console.log("1", chats)
+    return unsubscribe;
+  }, [userInfo?.uid]);
+
+  console.log("1", chats);
 
   // query friends
   useEffect(() => {
@@ -48,6 +50,24 @@ function ChatsSection({ userInfo }: any) {
 
     fetchFriends();
   }, [userInfo?.email]);
+
+  //search for users
+  useEffect(() => {
+    const checkIfClikedOutside = (e: any) => {
+      if (inputSearch.current.contains(e.target)) {
+        setTimeout(() => {
+          setSearchFriends(true);
+        }, 3000);
+      } else {
+        setSearchFriends(false);
+      }
+    };
+
+    document.addEventListener("mousedown", checkIfClikedOutside);
+    return () => {
+      document.removeEventListener("mousedown", checkIfClikedOutside);
+    };
+  });
 
   return (
     <div className="chatsSetion">
@@ -91,17 +111,33 @@ function ChatsSection({ userInfo }: any) {
               clipRule="evenodd"
             />
           </svg>
-          <input type="text" placeholder="Search Messenger" />
+          <input type="text" placeholder="Search Messenger" ref={inputSearch} />
         </div>
       </div>
       <div className="chatlist">
-        {/* {friends.map((friend: any) => (
-          <ChatListItem key={friend.uid} friend={friend} userInfo={userInfo} />
-        ))} */}
+        {searchFriends ? (
+          <>
+            {friends.map((friend: any) => (
+              <FriendsIn
+                key={friend.uid}
+                friend={friend}
+                userInfo={userInfo}
+              />
+            ))}
+          </>
+        ) : (
+          <>
+            {chats.map((chat: any) => (
+              <ChatListItem
+                key={chat.id}
+                userInfo={userInfo}
+                users={chat.users}
+                id={chat.id}
 
-        {chats.map((chat: any) => (
-          <ChatListItem key={chat.id} userInfo={userInfo} users={chat.users} />
-        ))}
+              />
+            ))}
+          </>
+        )}
       </div>
     </div>
   );

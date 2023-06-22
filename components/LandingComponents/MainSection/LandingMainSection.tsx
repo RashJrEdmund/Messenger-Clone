@@ -1,10 +1,11 @@
 import React from "react";
 import { StyledLandingMainSection } from "./StyledLandingMainSection";
 import LoginForm from "./LoginForm";
-import Image from "next/image";
-import Ilustration from "../images/landing_image.webp";
 import ContinueWithFb from "./ContinueWithFb";
 import TradeMarks from "./TradeMarks";
+import Landing_img from "../images/langing_photo.png";
+import Image from "next/image";
+import GoogleSign from "./GoogleSign";
 
 type Props = {};
 
@@ -19,6 +20,8 @@ export default function LandingMainSection({}: Props) {
         <p>
           Messenger makes it easy and fun to stay close to your favorite people
         </p>
+
+        <GoogleSign />
 
         {loginWithForm ? <LoginForm /> : <ContinueWithFb />}
 
@@ -35,7 +38,7 @@ export default function LandingMainSection({}: Props) {
       <div className="main_col__2">
         <Image
           className="main_img"
-          src={Ilustration}
+          src={Landing_img}
           alt="landing ilustration"
         />
       </div>

@@ -15,7 +15,7 @@ const StyledTradeMarks = styled.div`
     color: #fff;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 7px;
     padding: 5px 10px;
     border-radius: 7px;
 
@@ -23,16 +23,30 @@ const StyledTradeMarks = styled.div`
       margin: 0 12px 0 0;
     }
 
-    h6 {
-      font-weight: 300;
-      font-size: 12px;
-    }
+    .span {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
 
-    h2 {
-      font-weight: 500;
-      font-size: 15px;
+      h6 {
+        font-weight: 300;
+        font-size: 12px;
+      }
+
+      h2 {
+        font-weight: 500;
+        font-size: 15px;
+      }
     }
   }
+`;
+
+const StyledApple = styled(BsApple)`
+  font-size: 27px;
+`;
+
+const StyledMiscrosoft = styled(BsMicrosoft)`
+  font-size: 27px;
 `;
 
 type Props = {};
@@ -41,7 +55,7 @@ export default function TradeMarks({}: Props) {
   return (
     <StyledTradeMarks>
       <div className="trademark_col1">
-        <BsApple />
+        <StyledApple />
         <div className="span">
           <h6>Download on the</h6>
           <h2>App Store</h2>
@@ -49,7 +63,7 @@ export default function TradeMarks({}: Props) {
       </div>
 
       <div className="trademark_col2">
-        <BsMicrosoft />
+        <StyledMiscrosoft />
         <div className="span">
           <h6>Get it from</h6>
           <h2>Microsoft</h2>

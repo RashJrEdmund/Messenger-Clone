@@ -1,27 +1,36 @@
-"use client"
+"use client";
 import Icon from "@/components/atoms/Icon";
 import Image from "next/image";
 import "./ChatArea.css";
 import messages from "../../ChatJosn/Chat.json";
 import Dialogue from "./Dialogue/Dialogue";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import getFriends from "@/utils/getFriends";
 
-function ChatArea() {
-    let [dial,setDial] = useState<any>([])
+type Props = { chat: any ; chat_id:any };
+
+function ChatArea({ chat, chat_id }: Props) {
+  let [friend, setFriend] = useState<any>({});
+  
+/*   console.log(chat)
+  const chatParse = JSON?.parse(chat);
+  useEffect(() => {
+    if (chatParse.users?.length > 0) {
+      getFriends(chatParse.users).then((data) => {
+        setFriend(data);
+      });
+    }
+  }, [chat_id]); */
+
   return (
     <div className="chatArea">
       <div className="chatAreaHeader">
         <div className="userDetails">
           <div className="circle">
-            <Image
-              src="https://lh3.googleusercontent.com/ogw/AOLn63G9RkxTpNsmhZ7H6fId4yB6Abii8VySuY3epxVs=s32-c-mo"
-              alt=""
-              width={40}
-              height={40}
-            />
+            <Image src={friend?.photoURL} alt="" width={40} height={40} />
           </div>
           <div className="middle">
-            <div className="usersname">Prosper Yoo Bro</div>
+            <div className="usersname">{friend?.displayName}</div>
             <div className="peepMessage">
               {" "}
               <span>Yoo bro</span>・<span>36m</span>
@@ -71,10 +80,7 @@ function ChatArea() {
       </div>
       <div className="chatBody">
         {messages?.map((message: any) => (
-          <Dialogue
-           key={message.id}
-           dial={message}
-            />
+          <Dialogue key={message.id} dial={message} />
         ))}
       </div>
       <div className="chatInputSection">
@@ -176,3 +182,5 @@ function ChatArea() {
 }
 
 export default ChatArea;
+
+

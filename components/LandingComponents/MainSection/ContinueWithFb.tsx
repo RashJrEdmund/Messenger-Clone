@@ -1,8 +1,9 @@
-import styled from "@emotion/styled";
 import React from "react";
 import { signInWithPopup } from "firebase/auth";
 import { auth, db, facebookProvider } from "@/config/firebase";
 import { useRouter } from "next/navigation";
+import styled from "@emotion/styled";
+import { SignButton } from "@/components/atoms/Atoms";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 
 const StyledBtn = styled.button`
@@ -44,6 +45,6 @@ export default function ContinueWithFb({}: Props) {
   };
 
   return (
-    <StyledBtn onClick={signInWithFacebook}>Continue with Facebook</StyledBtn>
+    <SignButton onClick={signInWithFacebook}>Continue with Facebook</SignButton>
   );
 }
