@@ -1,21 +1,20 @@
+'use client'
+import ChatArea from "@/components/organisms/chatarea/ChatArea";
+import ChatsSection from "@/components/organisms/chatssection/ChatsSection";
+import LeftSideBar from "@/components/organisms/leftsidebar/LeftSideBar";
 
-import LeftSideBar from "../../components/organisms/leftsidebar/LeftSideBar";
-import ChatsSection from "../../components/organisms/chatssection/ChatsSection";
 
-import AuthGaurd from "@/HOC/AuthGaurd";
-import ChatArea from "../../components/organisms/chatarea/ChatArea";
+type Props = { id: any };
 
-type Props = { chat: any; id:any };
+function Home({ params }: { params: { id: string } }) {
 
-function Home({ chat, id }: Props) {
   return (
     <div className="flex">
       <LeftSideBar />
       <ChatsSection />
-      <ChatArea chat={chat} chat_id={id} />
+      <ChatArea  chat_id={params}  />
     </div>
   );
 }
 
 export default Home;
-

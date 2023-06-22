@@ -32,7 +32,7 @@ export default function GoogleSign({}: Props) {
           // ...user,
         };
         await setDoc(doc(db, "users", user.uid), currUser);
-        router.push("/chat");
+        router.push("/chat/id");
       })
       .catch((er) => console.log(er));
   };

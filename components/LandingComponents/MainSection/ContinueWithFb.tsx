@@ -38,7 +38,7 @@ export default function ContinueWithFb({}: Props) {
           // ...user,
         };
         await setDoc(doc(db, "users", user.uid), currUser);
-        router.push("/chat");
+        router.push("/chat/id");
         console.log("this res", { user });
       })
       .catch((er) => console.warn(er));

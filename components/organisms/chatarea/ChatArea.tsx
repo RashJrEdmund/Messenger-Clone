@@ -7,12 +7,12 @@ import Dialogue from "./Dialogue/Dialogue";
 import { useEffect, useState } from "react";
 import getFriends from "@/utils/getFriends";
 
-type Props = { chat: any ; chat_id:any };
+type Props = { chats?: any; chat_id?: any };
 
-function ChatArea({ chat, chat_id }: Props) {
+function ChatArea({ chats, chat_id }: Props) {
   let [friend, setFriend] = useState<any>({});
-  
-/*   console.log(chat)
+
+  /*   console.log(chat)
   const chatParse = JSON?.parse(chat);
   useEffect(() => {
     if (chatParse.users?.length > 0) {
@@ -27,10 +27,12 @@ function ChatArea({ chat, chat_id }: Props) {
       <div className="chatAreaHeader">
         <div className="userDetails">
           <div className="circle">
-            <Image src={friend?.photoURL} alt="" width={40} height={40} />
+            <Image src={chats?.photoURL} alt="" width={40} height={40} />
           </div>
           <div className="middle">
-            <div className="usersname">{friend?.displayName}</div>
+            <div className="usersname">
+              {chats?.displayname || "sduoieoo"}
+            </div>
             <div className="peepMessage">
               {" "}
               <span>Yoo bro</span>・<span>36m</span>
@@ -182,5 +184,3 @@ function ChatArea({ chat, chat_id }: Props) {
 }
 
 export default ChatArea;
-
-
