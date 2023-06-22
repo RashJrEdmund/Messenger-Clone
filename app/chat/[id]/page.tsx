@@ -28,6 +28,7 @@ function Home({ params, userInfo }: Props) {
       );
     });
 
+    
     return unsubscribe;
   }, [userInfo?.uid]);
   console.log(chats, "okay na Rebase");
@@ -35,8 +36,8 @@ function Home({ params, userInfo }: Props) {
     <div className="flex">
       <LeftSideBar />
       <ChatsSection />
-      {chats.map((chat: any) => (
-        <ChatArea key={params.params.id} chat_id={params} chats={chat} />
+      {chats?.map((chat: any) => (
+        <ChatArea key={chat.id} chat_id={params} users={chat.users} userInfo={userInfo}/>
       ))}
     </div>
   );
