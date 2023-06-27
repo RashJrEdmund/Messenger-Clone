@@ -53,21 +53,21 @@ function ChatsSection({ userInfo }: any) {
 
   //search for users
   useEffect(() => {
-    const checkIfClikedOutside = (e: any) => {
-      if (inputSearch.current.contains(e.target)) {
+    const checkIfClickedOutside = (e: any) => {
+      if (!inputSearch.current.contains(e.target)) {
         setTimeout(() => {
-          setSearchFriends(true);
+          setSearchFriends(false);
         }, 3000);
       } else {
-        setSearchFriends(false);
+        setSearchFriends(true);
       }
     };
 
-    document.addEventListener("mousedown", checkIfClikedOutside);
+    document.addEventListener("mousedown", checkIfClickedOutside);
     return () => {
-      document.removeEventListener("mousedown", checkIfClikedOutside);
+      document.removeEventListener("mousedown", checkIfClickedOutside);
     };
-  });
+  }, []);
 
   return (
     <div className="chatsSetion">
@@ -118,11 +118,7 @@ function ChatsSection({ userInfo }: any) {
         {searchFriends ? (
           <>
             {friends.map((friend: any) => (
-              <FriendsIn
-                key={friend.uid}
-                friend={friend}
-                userInfo={userInfo}
-              />
+              <FriendsIn key={friend.uid} friend={friend} userInfo={userInfo} />
             ))}
           </>
         ) : (
@@ -132,8 +128,8 @@ function ChatsSection({ userInfo }: any) {
                 key={chat.id}
                 userInfo={userInfo}
                 users={chat.users}
+                latestMessage= {chat.latestMessage}
                 id={chat.id}
-
               />
             ))}
           </>

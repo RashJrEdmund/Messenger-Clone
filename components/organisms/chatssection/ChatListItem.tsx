@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 import getFriends from "@/utils/getFriends";
 import { useRouter } from "next/navigation";
 
-type Props = { id: any; users: any; userInfo: any };
+type Props = { id: any; users: any; userInfo: any, latestMessage:any};
 
-function ChatListItem({ id, users, userInfo }: Props) {
+function ChatListItem({ id, users, userInfo,latestMessage }: Props) {
   const [friends, setFriend] = useState<any>({});
   const router = useRouter();
   const enterChat = () => {
@@ -32,7 +32,7 @@ function ChatListItem({ id, users, userInfo }: Props) {
         <div className="usersname">{friends?.displayname}</div>
         <div className="peepMessage">
           {" "}
-          <span className="text_message">Yoo bro</span>・
+          <span className="text_message">{latestMessage}</span>・
           <span>
             <Moment fromNow>{friends?.timestamp?.toDate()}</Moment>
           </span>

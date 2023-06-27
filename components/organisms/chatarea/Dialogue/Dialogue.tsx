@@ -2,16 +2,16 @@ import React from "react";
 import styled from "@emotion/styled";
 import moment from "moment";
 
-type Props = { dial: any };
+type Props = { dial: any,userInfo:any };
 
-export default function Dialogue({ dial }: Props) {
-  const mail = "ketchasso72@gmail.com";
+export default function Dialogue({ dial,userInfo }: Props) {
+  const mail = userInfo.user;
   const MessageType = dial.user === mail ? myMessage : fromMessage;
   return (
     <Container>
       <MessageType>
-        {dial.message}
-        <Timestamp>{moment(dial?.timestamp).format("LT")}</Timestamp>
+        {dial.messages}
+        <Timestamp>{moment(dial?.timeStamp?.toDate()).format("LT")}</Timestamp>
       </MessageType>
     </Container>
   );
