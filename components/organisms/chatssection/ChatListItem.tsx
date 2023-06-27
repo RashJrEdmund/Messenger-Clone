@@ -1,24 +1,41 @@
 import Image from "next/image";
 import "./ChatsSection.css";
+import Moment from "react-moment";
 
-type Props = { friend: any };
+import { useEffect, useState } from "react";
+import getFriends from "@/utils/getFriends";
+import { useRouter } from "next/navigation";
 
-function ChatListItem({ friend }: Props) {
+type Props = { id: any; users: any; userInfo: any, latestMessage:any};
+
+function ChatListItem({ id, users, userInfo,latestMessage }: Props) {
+  const [friends, setFriend] = useState<any>({});
+  const router = useRouter();
+  const enterChat = () => {
+    router.push(`/chat/${id}`);
+    console.log(id)
+  };
+
+  useEffect(() => {
+    if (users.length > 0) {
+      getFriends({ users, userInfo }).then((data: any) => setFriend(data));
+    }
+  }, [userInfo, users]);
+  console.log(friends);
+
   return (
-    <div className="chatListItem hoverEffect">
+    <div className="chatListItem hoverEffect" onClick={enterChat}>
       <div className="circle">
-        <img
-          src={friend?.photoURL}
-          alt=""
-          width={40}
-          height={40}
-        />
+        <img src={friends?.photoURL} alt="" width={40} height={40} />
       </div>
       <div className="middle">
-        <div className="usersname">{friend?.displayname}</div>
+        <div className="usersname">{friends?.displayname}</div>
         <div className="peepMessage">
           {" "}
-          <span>Yoo bro</span>・<span>36m</span>
+          <span className="text_message">{latestMessage}</span>・
+          <span>
+            <Moment fromNow>{friends?.timestamp?.toDate()}</Moment>
+          </span>
         </div>
       </div>
       <div className="ending">

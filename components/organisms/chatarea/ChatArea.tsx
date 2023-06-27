@@ -1,27 +1,99 @@
-"use client"
+"use client";
 import Icon from "@/components/atoms/Icon";
 import Image from "next/image";
 import "./ChatArea.css";
-import messages from "../../ChatJosn/Chat.json";
+/* import messages from "../../ChatJosn/Chat.json"; */
 import Dialogue from "./Dialogue/Dialogue";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import getFriends from "@/utils/getFriends";
+import {
+  addDoc,
+  collection,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
+import { db } from "@/config/firebase";
 
-function ChatArea() {
-    let [dial,setDial] = useState<any>([])
+type Props = { users?: any; chat_id?: any; userInfo: any };
+
+function ChatArea({ users, chat_id, userInfo }: Props) {
+  let [friend, setFriend] = useState<any>({});
+  const [input, setInput] = useState<any>("");
+  const [messages, setMessages] = useState<any>([]);
+
+  //call messages
+  useEffect(() => {
+    const messageRef = collection(db, "chats", chat_id.id, "messages");
+
+    const q = query(messageRef, orderBy("timeStamp", "asc"));
+
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      setMessages(
+        querySnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+          timestamp: doc.data().timestamp?.toDate().getTime(),
+        }))
+      );
+    });
+    console.log(unsubscribe, "3");
+    return unsubscribe;
+  }, [chat_id.id]);
+
+  console.log(messages);
+
+  useEffect(() => {
+    if (users.length > 0) {
+      getFriends({ users, userInfo }).then((data: any) => setFriend(data));
+    }
+  }, [userInfo, users]);
+
+  //send message to firestore
+  const message = async (e: any) => {
+    e.preventDefault();
+    const userRef = doc(db, "users", userInfo.uid);
+    setDoc(
+      userRef,
+      {
+        lastSeen: serverTimestamp(),
+      },
+      { merge: true }
+    );
+    //add collection message
+    const messageRef = collection(db, "chats", chat_id.id, "messages");
+    await addDoc(messageRef, {
+      timeStamp: serverTimestamp(),
+      messages: input,
+      user: userInfo.email,
+      photoURL: userInfo.photoURL,
+    });
+    const chatRef = doc(db, "chats", chat_id.id);
+    setDoc(
+      chatRef,
+      {
+        latestMessage: input,
+        timestamp: serverTimestamp(),
+      },
+      { merge: true }
+    );
+    setInput("");
+  };
+
   return (
     <div className="chatArea">
       <div className="chatAreaHeader">
         <div className="userDetails">
           <div className="circle">
-            <Image
-              src="https://lh3.googleusercontent.com/ogw/AOLn63G9RkxTpNsmhZ7H6fId4yB6Abii8VySuY3epxVs=s32-c-mo"
-              alt=""
-              width={40}
-              height={40}
-            />
+            <Image src={friend?.photoURL} alt="" width={40} height={40} />
           </div>
           <div className="middle">
-            <div className="usersname">Prosper Yoo Bro</div>
+            <div className="usersname">
+              {friend?.displayname || chat_id?.id}
+            </div>
             <div className="peepMessage">
               {" "}
               <span>Yoo bro</span>・<span>36m</span>
@@ -71,10 +143,7 @@ function ChatArea() {
       </div>
       <div className="chatBody">
         {messages?.map((message: any) => (
-          <Dialogue
-           key={message.id}
-           dial={message}
-            />
+          <Dialogue key={message.id} dial={message} userInfo= {userInfo} />
         ))}
       </div>
       <div className="chatInputSection">
@@ -135,10 +204,10 @@ function ChatArea() {
         </div>
         <div className="longinput">
           <div>
-            <input type="text" placeholder="Aa" />
+            <input type="text" onChange={(e) => setInput(e.target.value)} />
           </div>
           <div>
-            <div className="fourIcons">
+            <div className="fourIcons" onClick={message}>
               <div className="icon hoverEffect">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +225,7 @@ function ChatArea() {
             </div>
           </div>
         </div>
-        <div className="like">
+        <button className="like" onClick={message} type="submit">
           <div className="fourIcons">
             <div className="icon hoverEffect">
               <svg
@@ -169,7 +238,7 @@ function ChatArea() {
               </svg>
             </div>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   );

@@ -3,14 +3,41 @@ import Icon from "@/components/atoms/Icon";
 import path from "path";
 import ChatListItem from "./ChatListItem";
 import "./ChatsSection.css";
-import { useEffect, useState } from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { useEffect, useRef, useState } from "react";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  onSnapshot,
+  QuerySnapshot,
+} from "firebase/firestore";
 import { db } from "@/config/firebase";
 import AuthGaurd from "@/HOC/AuthGaurd";
+import FriendsIn from "./Friend";
 
 function ChatsSection({ userInfo }: any) {
   const [friends, setFriends] = useState<any>([]);
+  const [chats, setChats] = useState<any>([]);
+  const inputSearch = useRef<any>(null);
+  const [searchFriends, setSearchFriends] = useState<any>(false);
+  // query chat
+  useEffect(() => {
+    const chatsRef = collection(db, "chats");
+    const q = query(chatsRef, where("users", "array-contains", userInfo.uid));
 
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      setChats(
+        querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      );
+    });
+
+    return unsubscribe;
+  }, [userInfo?.uid]);
+
+  console.log("1", chats);
+
+  // query friends
   useEffect(() => {
     async function fetchFriends() {
       const usersRef = collection(db, "users");
@@ -20,8 +47,27 @@ function ChatsSection({ userInfo }: any) {
         querySnaphot.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }))
       );
     }
+
     fetchFriends();
   }, [userInfo?.email]);
+
+  //search for users
+  useEffect(() => {
+    const checkIfClickedOutside = (e: any) => {
+      if (!inputSearch.current.contains(e.target)) {
+        setTimeout(() => {
+          setSearchFriends(false);
+        }, 3000);
+      } else {
+        setSearchFriends(true);
+      }
+    };
+
+    document.addEventListener("mousedown", checkIfClickedOutside);
+    return () => {
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, []);
 
   return (
     <div className="chatsSetion">
@@ -65,13 +111,29 @@ function ChatsSection({ userInfo }: any) {
               clipRule="evenodd"
             />
           </svg>
-          <input type="text" placeholder="Search Messenger" />
+          <input type="text" placeholder="Search Messenger" ref={inputSearch} />
         </div>
       </div>
       <div className="chatlist">
-        {friends.map((friend: any) => (
-          <ChatListItem key={friend.uid} friend={friend} />
-        ))}
+        {searchFriends ? (
+          <>
+            {friends.map((friend: any) => (
+              <FriendsIn key={friend.uid} friend={friend} userInfo={userInfo} />
+            ))}
+          </>
+        ) : (
+          <>
+            {chats.map((chat: any) => (
+              <ChatListItem
+                key={chat.id}
+                userInfo={userInfo}
+                users={chat.users}
+                latestMessage= {chat.latestMessage}
+                id={chat.id}
+              />
+            ))}
+          </>
+        )}
       </div>
     </div>
   );

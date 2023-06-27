@@ -2,7 +2,7 @@ import React from "react";
 import { signInWithPopup } from "firebase/auth";
 import { auth, db, facebookProvider } from "@/config/firebase";
 import { useRouter } from "next/navigation";
-
+import styled from "@emotion/styled";
 import { SignButton } from "@/components/atoms/Atoms";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 
@@ -38,7 +38,7 @@ export default function ContinueWithFb({}: Props) {
           // ...user,
         };
         await setDoc(doc(db, "users", user.uid), currUser);
-        router.push("/chat");
+        router.push("/chat/id");
         console.log("this res", { user });
       })
       .catch((er) => console.warn(er));
