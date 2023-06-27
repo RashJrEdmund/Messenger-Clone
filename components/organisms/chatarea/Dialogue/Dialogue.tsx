@@ -5,7 +5,7 @@ import moment from "moment";
 type Props = { dial: any,userInfo:any };
 
 export default function Dialogue({ dial,userInfo }: Props) {
-  const mail = userInfo.user;
+  const mail = userInfo.email;
   const MessageType = dial.user === mail ? myMessage : fromMessage;
   return (
     <Container>
