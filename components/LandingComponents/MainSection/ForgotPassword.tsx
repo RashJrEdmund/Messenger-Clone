@@ -10,8 +10,6 @@ export default function ForgotPassword({ email, setResetPassword }: Props) {
   const [formEmail, setFormEmail] = React.useState(email);
   const [formError, setFormError] = React.useState<boolean>(false);
 
-  const inputRef = useRef();
-
   const handleForgotpassword = async () => {
     if (!formEmail.trim()) {
       setFormError(true);
@@ -22,17 +20,12 @@ export default function ForgotPassword({ email, setResetPassword }: Props) {
       .catch((err) => console.log("this reset err", err));
   };
 
-  React.useEffect(() => {
-    if(inputRef.current) inputRef.current.focus();
-  }, []);
-
   return (
     <>
       <Overlay onClick={() => setResetPassword(false)} />
 
       <StyledForgotPassword onSubmit={handleForgotpassword}>
         <input
-          ref={inputRef}
           type="email"
           placeholder="email to reset password"
           required
