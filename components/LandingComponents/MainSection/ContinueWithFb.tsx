@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import styled from "@emotion/styled";
 import { SignButton } from "@/components/atoms/Atoms";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import styled from "@emotion/styled";
 
 const StyledBtn = styled.button`
   background-color: #0b7cff;
